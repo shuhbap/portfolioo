@@ -1,78 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shuhaib AP — Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuhaib AP — Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0A;
+      color: #EAEAEA;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- SCROLLBAR ---------- */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1B5E20;
+      border-radius: 10px;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(27, 94, 32, 0.4);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #EAEAEA;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: #2E7D32;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #EAEAEA;
+      border-radius: 4px;
+      transition: 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #B0B0B0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2E7D32;
+      transition: 0.3s;
+    }
+    .nav-links a:hover {
+      color: #EAEAEA;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-links a.active {
+      color: #66BB6A;
+    }
+    .nav-links a.active::after {
+      width: 100%;
+      background: #66BB6A;
+    }
+
+    /* ---------- PAGE CONTENT ---------- */
+    .page-content {
+      flex: 1;
+      padding: 120px 48px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-title {
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .page-title span {
+      color: #2E7D32;
+    }
+    .page-sub {
+      color: #888;
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    .contact-info h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .contact-info p {
+      color: #999;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    .contact-info .socials {
+      display: flex;
+      gap: 18px;
+    }
+    .contact-info .socials a {
+      color: #888;
+      font-size: 22px;
+      transition: 0.3s;
+    }
+    .contact-info .socials a:hover {
+      color: #66BB6A;
+      transform: scale(1.2);
+    }
+    .email-info {
+      margin-top: 24px;
+      color: #888;
+      font-size: 15px;
+    }
+    .email-info i {
+      color: #66BB6A;
+      margin-right: 10px;
+    }
+    .email-info a {
+      color: #66BB6A;
+      text-decoration: none;
+      border-bottom: 1px dashed #2E7D32;
+    }
+    .email-info a:hover {
+      color: #EAEAEA;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: #121212;
+      border: 1px solid rgba(27, 94, 32, 0.3);
+      border-radius: 12px;
+      color: #EAEAEA;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      transition: 0.3s;
+      margin-bottom: 16px;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #2E7D32;
+    }
+    .contact-form textarea {
+      height: 140px;
+      resize: vertical;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 16px;
+      background: #2E7D32;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #0A0A0A;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact-form button:hover {
+      background: #1B5E20;
+      box-shadow: 0 0 40px rgba(46, 125, 50, 0.2);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 40px 20px 20px;
+      border-top: 1px solid rgba(27, 94, 32, 0.25);
+      color: #555;
+      font-size: 14px;
+      margin-top: auto;
+    }
+    footer span {
+      color: #66BB6A;
+    }
+
+    /* ---------- FLOATING BLOBS ---------- */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: -1;
+      animation: floatBlob 14s ease-in-out infinite alternate;
+    }
+    .blob-1 {
+      width: 420px;
+      height: 420px;
+      background: #1B5E20;
+      top: -120px;
+      right: -80px;
+    }
+    .blob-2 {
+      width: 320px;
+      height: 320px;
+      background: #2E7D32;
+      bottom: -60px;
+      left: -60px;
+      animation-delay: 4s;
+    }
+    @keyframes floatBlob {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(80px, -70px) scale(1.25); }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: #0A0A0A;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        border-left: 1px solid rgba(27, 94, 32, 0.4);
+        transition: right 0.35s ease;
+        backdrop-filter: blur(14px);
+        padding: 40px 20px;
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 20px; font-weight: 600; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .page-content { padding: 100px 24px 40px; }
+    }
+    @media (max-width: 500px) {
+      .page-title { font-size: 30px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-        <div class="logo">Shuhaib<span>.</span></div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-    <!-- ===== HERO / LANDING ===== -->
-    <section class="hero-section" id="home">
-        <div class="hero-content">
-            <h1>Shuhaib <span>AP</span></h1>
-            <div class="rotating-text">
-                I'm a <span class="highlight" id="rotatingRole">Full Stack Developer</span>
-            </div>
-            <p class="hero-subtitle">
-                Full Stack Developer · Digital Marketer · Designer · UI/UX · Performance Marketer<br />
-                I build, design & scale digital experiences.
-            </p>
-            <div class="hero-buttons">
-                <a href="projects.html" class="btn btn-outline">View My Work</a>
-                <a href="contact.html" class="btn btn-primary">Let's Talk</a>
-            </div>
+  <nav>
+    <div class="logo">Shuhaib<span>.</span></div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-content">
+    <h1 class="page-title">Let's <span>Connect</span></h1>
+    <p class="page-sub">Have a project? Let's make it happen.</p>
+
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Got an idea?</h3>
+        <p>
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          Whether it's development, design, or marketing — let's talk.
+        </p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-    </section>
-
-    <!-- ===== QUICK PREVIEW ===== -->
-    <section class="preview-section">
-        <h2>What I <span>Do</span></h2>
-        <div class="preview-grid">
-            <div class="preview-card">
-                <i class="fas fa-code"></i>
-                <h3>Full Stack Dev</h3>
-                <p>React, Node.js, MongoDB — scalable web apps.</p>
-            </div>
-            <div class="preview-card">
-                <i class="fas fa-pencil-ruler"></i>
-                <h3>UI/UX Design</h3>
-                <p>User-centric designs with Figma & Adobe XD.</p>
-            </div>
-            <div class="preview-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Performance Marketing</h3>
-                <p>Data-driven campaigns that maximize ROAS.</p>
-            </div>
+        <div class="email-info">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:shuhaib@example.com">shuhaib@example.com</a>
         </div>
-        <div class="preview-cta">
-            <a href="services.html" class="btn btn-outline">View All Services →</a>
-        </div>
-    </section>
+      </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        &copy; 2026 <span>Shuhaib AP</span> — Built with <span>❤</span> + <span>💚</span>
-    </footer>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Tell me about your project..."></textarea>
+        <button type="submit">Send Message <i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <footer>&copy; 2026 <span>Shuhaib AP</span> — Built with <span>❤</span> + <span>💚</span></footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hamburgerBtn.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        hamburgerBtn.classList.remove('active');
+        navLinks.classList.remove('open');
+      }
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thanks for reaching out, Shuhaib will get back to you soon! 💚');
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>
