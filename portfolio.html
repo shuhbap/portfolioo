@@ -1,115 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shuhaib AP — Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuhaib AP · Projects</title>
+  <!-- Google Fonts: Inter + Poppins for headings -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ===== GLOBAL DARK THEME – Colors from spec ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0A0A0A;
+      color: #FFFFFF;
+      font-family: 'Inter', 'Poppins', sans-serif;
+      line-height: 1.6;
+      font-weight: 400;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00C896;
+      border-radius: 20px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7FFFD4;
+    }
+
+    /* ===== NAVIGATION – card BG #161616 ===== */
+    nav {
+      background: rgba(22, 22, 22, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 200, 150, 0.25);
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .logo span {
+      color: #7FFFD4;
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav-links li a {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+      position: relative;
+      color: #A1A1AA;
+      font-family: 'Poppins', sans-serif;
+      padding-bottom: 4px;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: #00C896;
+      transition: width 0.25s ease;
+      border-radius: 10px;
+    }
+
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      width: 100%;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #FFFFFF;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 2px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2.5px;
+      background: #00C896;
+      border-radius: 10px;
+      transition: 0.25s;
+    }
+
+    /* ===== PAGE CONTENT ===== */
+    .page-content {
+      flex: 1;
+      padding: 60px 32px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-title {
+      font-size: 44px;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .page-title span {
+      color: #00C896;
+      position: relative;
+    }
+
+    .page-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(0, 200, 150, 0.2);
+      border-radius: 20px;
+    }
+
+    .page-sub {
+      text-align: center;
+      color: #A1A1AA;
+      font-size: 17px;
+      margin-bottom: 48px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    .page-sub i {
+      color: #00C896;
+      margin-right: 6px;
+    }
+
+    /* ===== PROJECTS GRID ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #161616;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #00C896;
+      box-shadow: 0 16px 48px rgba(0, 200, 150, 0.12);
+    }
+
+    .project-img {
+      background: linear-gradient(135deg, rgba(0, 200, 150, 0.12), rgba(127, 255, 212, 0.05));
+      padding: 32px 20px 20px;
+      text-align: center;
+      font-size: 52px;
+      color: #00C896;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .project-img i {
+      filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.2));
+    }
+
+    .project-body {
+      padding: 24px 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(0, 200, 150, 0.12);
+      color: #7FFFD4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 14px;
+      border-radius: 40px;
+      margin-bottom: 12px;
+      align-self: flex-start;
+      border: 1px solid rgba(127, 255, 212, 0.1);
+      text-transform: uppercase;
+    }
+
+    .project-body h3 {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .project-body p {
+      color: #A1A1AA;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .tech {
+      font-size: 12px;
+      font-weight: 600;
+      color: #A1A1AA;
+      letter-spacing: 0.2px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 14px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 18px;
+      display: inline-block;
+      align-self: flex-start;
+    }
+
+    .project-link {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00C896;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      width: fit-content;
+    }
+
+    .project-link i {
+      font-size: 13px;
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover {
+      color: #7FFFD4;
+      border-bottom-color: #7FFFD4;
+    }
+
+    .project-link:hover i {
+      transform: translateX(5px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0A0A0A;
+      text-align: center;
+      padding: 28px 20px;
+      border-top: 1px solid rgba(0, 200, 150, 0.15);
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.3px;
+      margin-top: auto;
+    }
+
+    footer span {
+      color: #7FFFD4;
+      font-weight: 600;
+    }
+
+    footer i {
+      color: #00C896;
+      margin: 0 3px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0 12px;
+        gap: 14px;
+        background: #161616;
+        border-radius: 24px;
+        margin-top: 12px;
+        border: 1px solid rgba(0, 200, 150, 0.15);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .page-content {
+        padding: 40px 16px 60px;
+      }
+
+      .page-title {
+        font-size: 34px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .project-card {
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 20px;
+      }
+      .page-title {
+        font-size: 28px;
+      }
+      .project-body h3 {
+        font-size: 18px;
+      }
+      .project-img {
+        font-size: 40px;
+        padding: 24px 16px 16px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-        <div class="logo">Shuhaib<span>.</span></div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="logo">Shuhaib<span>.</span></div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- ===== PROJECTS PAGE ===== -->
-    <section class="page-content">
-        <h1 class="page-title">My <span>Projects</span></h1>
-        <p class="page-sub">Real work. Real results.</p>
+  <!-- ===== PROJECTS PAGE ===== -->
+  <section class="page-content">
+    <h1 class="page-title">My <span>Projects</span></h1>
+    <p class="page-sub"><i class="fas fa-code"></i> Real work. Real results.</p>
 
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-store"></i></div>
-                <div class="project-body">
-                    <span class="tag">Full Stack · UI/UX</span>
-                    <h3>E-Commerce Platform</h3>
-                    <p>Responsive PWA with one-click checkout — built for a local brand. 60% increase in mobile sales.</p>
-                    <div class="tech">React · Node.js · MongoDB · Stripe</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-chart-bar"></i></div>
-                <div class="project-body">
-                    <span class="tag">Performance Marketing</span>
-                    <h3>Social Media Growth Campaign</h3>
-                    <p>Lookalike audiences + A/B tested creatives. ROAS increased from 2.1x to 4.5x in 30 days.</p>
-                    <div class="tech">Meta Ads · Google Analytics · Canva</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-palette"></i></div>
-                <div class="project-body">
-                    <span class="tag">Branding · Graphic Design</span>
-                    <h3>EcoNest — Brand Identity</h3>
-                    <p>Complete brand identity including logo, color palette, typography & brand guidelines.</p>
-                    <div class="tech">Figma · Illustrator</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-wallet"></i></div>
-                <div class="project-body">
-                    <span class="tag">UI/UX Design</span>
-                    <h3>Personal Finance Dashboard</h3>
-                    <p>Minimal, dark-mode dashboard with clear data visualization for complex financial data.</p>
-                    <div class="tech">Figma · Adobe XD</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-utensils"></i></div>
-                <div class="project-body">
-                    <span class="tag">Full Stack · SEO · Ads</span>
-                    <h3>Restaurant Website + Growth</h3>
-                    <p>Website + SEO + Google Ads campaign. Result: 3x more bookings in 2 months.</p>
-                    <div class="tech">WordPress · SEO · Google Ads</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card">
-                <div class="project-img"><i class="fas fa-video"></i></div>
-                <div class="project-body">
-                    <span class="tag">UI/UX · Branding</span>
-                    <h3>Streaming Platform Redesign</h3>
-                    <p>Complete UI overhaul for a music streaming service. Improved user retention by 35%.</p>
-                    <div class="tech">Figma · Adobe XD · User Testing</div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-store"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-crown" style="margin-right: 5px;"></i> Full Stack · UI/UX</span>
+          <h3>E-Commerce Platform</h3>
+          <p>Responsive PWA with one-click checkout — built for a local brand. 60% increase in mobile sales.</p>
+          <div class="tech"><i class="fas fa-code" style="margin-right: 6px; color: #00C896;"></i> React · Node.js · MongoDB · Stripe</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
-    </section>
+      </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        &copy; 2026 <span>Shuhaib AP</span> — Built with <span>❤</span> + <span>💚</span>
-    </footer>
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-chart-line"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-bullhorn" style="margin-right: 5px;"></i> Performance Marketing</span>
+          <h3>Social Media Growth Campaign</h3>
+          <p>Lookalike audiences + A/B tested creatives. ROAS increased from 2.1x to 4.5x in 30 days.</p>
+          <div class="tech"><i class="fas fa-ads" style="margin-right: 6px; color: #00C896;"></i> Meta Ads · Google Analytics · Canva</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-palette"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-pen-fancy" style="margin-right: 5px;"></i> Branding · Graphic Design</span>
+          <h3>EcoNest — Brand Identity</h3>
+          <p>Complete brand identity including logo, color palette, typography &amp; brand guidelines.</p>
+          <div class="tech"><i class="fas fa-paint-brush" style="margin-right: 6px; color: #00C896;"></i> Figma · Illustrator</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-wallet"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-layer-group" style="margin-right: 5px;"></i> UI/UX Design</span>
+          <h3>Personal Finance Dashboard</h3>
+          <p>Minimal, dark-mode dashboard with clear data visualization for complex financial data.</p>
+          <div class="tech"><i class="fas fa-vector-square" style="margin-right: 6px; color: #00C896;"></i> Figma · Adobe XD</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-utensils"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-globe" style="margin-right: 5px;"></i> Full Stack · SEO · Ads</span>
+          <h3>Restaurant Website + Growth</h3>
+          <p>Website + SEO + Google Ads campaign. Result: 3x more bookings in 2 months.</p>
+          <div class="tech"><i class="fas fa-search" style="margin-right: 6px; color: #00C896;"></i> WordPress · SEO · Google Ads</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-video"></i></div>
+        <div class="project-body">
+          <span class="tag"><i class="fas fa-music" style="margin-right: 5px;"></i> UI/UX · Branding</span>
+          <h3>Streaming Platform Redesign</h3>
+          <p>Complete UI overhaul for a music streaming service. Improved user retention by 35%.</p>
+          <div class="tech"><i class="fas fa-play" style="margin-right: 6px; color: #00C896;"></i> Figma · Adobe XD · User Testing</div>
+          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    &copy; 2026 <span>Shuhaib AP</span> &nbsp;—&nbsp; Built with <i class="fas fa-heart"></i> + <i class="fas fa-code"></i>
+  </footer>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    (function() {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          navLinks.classList.toggle('active');
+        });
+
+        // Close on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+          });
+        });
+
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+          if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            navLinks.classList.remove('active');
+          }
+        });
+      }
+    })();
+  </script>
+
 </body>
 </html>
