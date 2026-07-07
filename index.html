@@ -90,10 +90,41 @@
             color: #66BB6A;
         }
 
+        /* Hamburger (three-line button) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #EAEAEA;
+            border-radius: 4px;
+            transition: 0.3s ease;
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
         .nav-links {
             display: flex;
             gap: 30px;
             list-style: none;
+            transition: 0.4s ease;
         }
         .nav-links a {
             color: #A0A0A0;
@@ -559,12 +590,35 @@
                 padding: 16px 24px;
                 flex-wrap: wrap;
             }
-            .nav-links {
-                gap: 16px;
-                flex-wrap: wrap;
-                justify-content: center;
-                margin-top: 10px;
+
+            .hamburger {
+                display: flex;
             }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 240px;
+                height: 100vh;
+                background: #0A0A0A;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                border-left: 1px solid rgba(27, 94, 32, 0.3);
+                transition: right 0.4s ease;
+                backdrop-filter: blur(12px);
+                padding: 40px 20px;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+            }
+
             .page {
                 padding: 100px 24px 40px;
             }
@@ -642,7 +696,15 @@
     <!-- ===== NAVIGATION ===== -->
     <nav>
         <div class="logo">Shuhaib<span>.</span></div>
-        <ul class="nav-links">
+
+        <!-- Hamburger (three-line button) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="#" class="active" data-page="home">Home</a></li>
             <li><a href="#" data-page="about">About</a></li>
             <li><a href="#" data-page="services">Services</a></li>
@@ -855,6 +917,32 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // ===== HAMBURGER TOGGLE =====
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close menu on link click (for better UX)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Close menu on outside click (optional)
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('open');
+            }
+        });
+
         // ===== PAGE NAVIGATION =====
         const links = document.querySelectorAll('.nav-links a, .btn[data-page]');
         const pages = {
