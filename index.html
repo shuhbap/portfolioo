@@ -82,7 +82,11 @@
       flex-wrap: wrap;
     }
 
+    /* ===== LOGO with image ===== */
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -90,15 +94,25 @@
       font-family: 'Poppins', sans-serif;
     }
 
+    .logo-img {
+      height: 44px;
+      width: auto;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(212, 160, 23, 0.15);
+      background: #f9f6f0; /* soft fallback */
+      object-fit: contain;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.04);
+    }
+
     .logo span {
       color: #D4A017;
       font-weight: 300;
-    }
-
-    .logo i {
-      color: #D4A017;
-      margin-right: 6px;
-      font-size: 22px;
     }
 
     .nav-links {
@@ -575,6 +589,9 @@
       .logo {
         font-size: 20px;
       }
+      .logo-img {
+        height: 36px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -609,17 +626,22 @@
         padding: 12px 28px;
         font-size: 14px;
       }
+      .logo-img {
+        height: 32px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
+  <!-- ===== HEADER with image logo ===== -->
   <header id="header">
     <div class="container">
       <nav>
         <div class="logo">
-          <i class="fas fa-crown"></i> SHUHAIB <span>AP</span>
+          <!-- LOGO IMAGE from the provided URL -->
+          <img class="logo-img" src="https://i.ibb.co/hF4J5Dry/jawadmd.jpg" alt="SHUHAIB AP logo" />
+          <span>SHUHAIB AP</span>
         </div>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html" class="active">Home</a></li>
