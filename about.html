@@ -3,68 +3,505 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shuhaib AP — About</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <title>SHUHAIB AP - About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== GLOBAL DARK THEME (SAME AS INDEX) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a4d2e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d7a4a;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 77, 46, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 8px 0;
+            background: rgba(10, 10, 10, 0.98);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a4d2e;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .logo i {
+            color: #1a4d2e;
+            margin-right: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+            color: #b0b0b0;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1a4d2e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #1a4d2e;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #1a4d2e;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            color: #1a4d2e;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 17px;
+        }
+
+        /* ===== ABOUT PAGE ===== */
+        .about-page {
+            padding: 140px 0 80px;
+        }
+
+        .about-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-page-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(26, 77, 46, 0.2);
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .about-page-text h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1a4d2e;
+        }
+
+        .about-page-text p {
+            color: #999;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .info-list li {
+            padding: 10px 0;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-list li i {
+            color: #1a4d2e;
+            width: 22px;
+            font-size: 16px;
+        }
+
+        .info-list li span {
+            color: #777;
+            font-weight: 400;
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience {
+            padding: 60px 0;
+            background: rgba(26, 77, 46, 0.03);
+            border-top: 1px solid rgba(26, 77, 46, 0.1);
+            border-bottom: 1px solid rgba(26, 77, 46, 0.1);
+            margin-top: 60px;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .exp-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .exp-card:hover {
+            border-color: #1a4d2e;
+            transform: translateY(-5px);
+        }
+
+        .exp-card i {
+            font-size: 40px;
+            color: #1a4d2e;
+            margin-bottom: 15px;
+        }
+
+        .exp-card h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .exp-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            background: #1a4d2e;
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: #2d7a4a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(26, 77, 46, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1a4d2e;
+            color: #1a4d2e;
+        }
+
+        .btn-outline:hover {
+            background: #1a4d2e;
+            color: #fff;
+        }
+
+        /* ===== SOCIAL ICONS ===== */
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            color: #b0b0b0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .social-icons a:hover {
+            background: #1a4d2e;
+            color: #fff;
+            transform: translateY(-5px);
+            border-color: #1a4d2e;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #050505;
+            color: #fff;
+            text-align: center;
+            padding: 35px 0;
+            border-top: 1px solid rgba(26, 77, 46, 0.2);
+        }
+
+        footer .social-icons {
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        footer .social-icons a {
+            background: rgba(255, 255, 255, 0.05);
+            color: #b0b0b0;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        footer .social-icons a:hover {
+            background: #1a4d2e;
+            border-color: #1a4d2e;
+            color: #fff;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        footer p i {
+            color: #1a4d2e;
+        }
+
+        footer p strong {
+            color: #1a4d2e;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .about-page-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-page-image img {
+                max-width: 350px;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            .info-list li {
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                gap: 15px;
+                background: #0a0a0a;
+                border-radius: 12px;
+                margin-top: 10px;
+                border: 1px solid rgba(26, 77, 46, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-page {
+                padding: 120px 0 50px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .about-page-image img {
+                height: 320px;
+                max-width: 280px;
+            }
+
+            .exp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-        <div class="logo">Shuhaib<span>.</span></div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i> SHUHAIB <span>AP</span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     <!-- ===== ABOUT PAGE ===== -->
-    <section class="page-content">
-        <h1 class="page-title">About <span>Me</span></h1>
-        <p class="page-sub">The story behind the code & creativity</p>
-
-        <div class="about-grid">
-            <div class="about-text">
-                <p>
-                    I'm <strong>Shuhaib AP</strong> — a multidisciplinary digital professional with a passion for
-                    building beautiful, high-performance digital products. With expertise spanning <strong>Full Stack
-                    Development, UI/UX Design, Branding, and Performance Marketing</strong>, I bring a rare mix of
-                    technical depth and creative strategy.
-                </p>
-                <p>
-                    I believe in <strong>design that converts, code that scales, and marketing that resonates</strong>.
-                    Whether it's crafting a seamless user experience, developing a robust web app, or running data-driven
-                    ad campaigns — I deliver results.
-                </p>
-                <div class="skill-tags">
-                    <span>React</span><span>Node.js</span><span>Python</span><span>Figma</span>
-                    <span>Adobe XD</span><span>Google Ads</span><span>SEO</span><span>UI/UX</span>
-                    <span>Branding</span><span>Performance Marketing</span>
+    <section class="about-page">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <p class="section-sub">Get to know the developer behind the code</p>
+            <div class="about-page-grid">
+                <div class="about-page-image">
+                    <img src="https://images.pexels.com/photos/1912868/pexels-photo-1912868.jpeg?auto=compress&cs=tinysrgb&w=600" alt="SHUHAIB AP" />
+                </div>
+                <div class="about-page-text">
+                    <h3>Turning Ideas into Digital Reality</h3>
+                    <p>I'm SHUHAIB AP — a passionate Full Stack Developer from Kerala, India. With 2+ years of experience in web development, I specialize in creating high-performance, responsive, and visually stunning websites.</p>
+                    <p>I don't just code — I bring ideas to life. Whether it's a full-stack web app, a brand identity, or a marketing strategy, I deliver solutions that make an impact.</p>
+                    <p>My approach combines technical expertise with creative thinking, ensuring every project I work on stands out and achieves its goals.</p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Location: <span>Kerala, India</span></li>
+                        <li><i class="fas fa-envelope"></i> Email: <span>shuhaiiibap@gmail.com</span></li>
+                        <li><i class="fas fa-phone"></i> Phone: <span>+91 7448520075</span></li>
+                        <li><i class="fas fa-briefcase"></i> Experience: <span>2+ Years</span></li>
+                        <li><i class="fas fa-code"></i> Expertise: <span>Full Stack Dev, Marketing, Design</span></li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/shuhaiiib.ap" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/shuhbap" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/in/shuhaibap" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:shuhaiiibap@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+917448520075"><i class="fas fa-phone"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="number">4+</div>
-                    <div class="label">Years Experience</div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="experience">
+        <div class="container">
+            <h2 class="section-title">My <span>Journey</span></h2>
+            <p class="section-sub">Experience &amp; milestones</p>
+            <div class="exp-grid">
+                <div class="exp-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>2+ Years</h4>
+                    <p>Web Development Experience</p>
                 </div>
-                <div class="stat-card">
-                    <div class="number">25+</div>
-                    <div class="label">Projects Delivered</div>
+                <div class="exp-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h4>50+ Projects</h4>
+                    <p>Completed Successfully</p>
                 </div>
-                <div class="stat-card">
-                    <div class="number">12+</div>
-                    <div class="label">Happy Clients</div>
+                <div class="exp-card">
+                    <i class="fas fa-users"></i>
+                    <h4>30+ Clients</h4>
+                    <p>Happy &amp; Satisfied</p>
                 </div>
-                <div class="stat-card">
-                    <div class="number">3x</div>
-                    <div class="label">Avg. Growth Delivered</div>
+                <div class="exp-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>5+ Awards</h4>
+                    <p>For Excellence in Work</p>
                 </div>
             </div>
         </div>
@@ -72,9 +509,41 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        &copy; 2026 <span>Shuhaib AP</span> — Built with <span>❤</span> + <span>💚</span>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://instagram.com/shuhaiiib.ap" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/shuhbap" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/shuhaibap" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:shuhaiiibap@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+917448520075"><i class="fas fa-phone"></i></a>
+            </div>
+            <p>&copy; 2026 <strong>SHUHAIB AP</strong>. All rights reserved. Made with <i class="fas fa-heart"></i> from Kerala</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
 </body>
 </html>
