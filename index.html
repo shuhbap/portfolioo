@@ -6,10 +6,10 @@
   <title>SHUHAIB AP · Home</title>
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <!-- Google Font: Inter + Poppins for stylish headings -->
+  <!-- Google Font: Inter + Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ===== DARK THEME – WHITE & DARK YELLOW (#D4A017 / #F5C842) ===== */
+    /* ===== WHITE BACKGROUND · DARK YELLOW (#D4A017 / #F5C842) ===== */
     * {
       margin: 0;
       padding: 0;
@@ -21,8 +21,8 @@
     }
 
     body {
-      background: #0D0D0D;
-      color: #F0F0F0;
+      background: #FFFFFF;
+      color: #1A1A1A;
       font-family: 'Inter', 'Poppins', sans-serif;
       line-height: 1.6;
       font-weight: 400;
@@ -40,38 +40,39 @@
       padding: 0 24px;
     }
 
-    /* ===== SCROLLBAR – yellow accent ===== */
+    /* ===== SCROLLBAR – dark yellow ===== */
     ::-webkit-scrollbar {
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #0D0D0D;
+      background: #F5F5F5;
     }
     ::-webkit-scrollbar-thumb {
       background: #D4A017;
       border-radius: 20px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #F5C842;
+      background: #B8860B;
     }
 
-    /* ===== HEADER – dark card ===== */
+    /* ===== HEADER – white with shadow ===== */
     header {
-      background: rgba(18, 18, 18, 0.94);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+      border-bottom: 1px solid rgba(212, 160, 23, 0.25);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
       padding: 14px 0;
       transition: all 0.25s ease;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
     }
 
     header.scrolled {
       padding: 8px 0;
-      background: #121212;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+      background: #FFFFFF;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     }
 
     nav {
@@ -85,12 +86,12 @@
       font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: #FFFFFF;
+      color: #1A1A1A;
       font-family: 'Poppins', sans-serif;
     }
 
     .logo span {
-      color: #F5C842;
+      color: #D4A017;
       font-weight: 300;
     }
 
@@ -112,7 +113,7 @@
       letter-spacing: 0.3px;
       transition: color 0.2s;
       position: relative;
-      color: #AAAAAA;
+      color: #555555;
       font-family: 'Poppins', sans-serif;
     }
 
@@ -135,7 +136,7 @@
 
     .nav-links li a:hover,
     .nav-links li a.active {
-      color: #FFFFFF;
+      color: #1A1A1A;
     }
 
     .hamburger {
@@ -145,13 +146,13 @@
       color: #D4A017;
     }
 
-    /* ===== HERO – yellow & white ===== */
+    /* ===== HERO – white bg, dark yellow accents ===== */
     .hero {
       padding: 150px 0 80px;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: radial-gradient(ellipse at 20% 50%, rgba(212, 160, 23, 0.07) 0%, transparent 70%);
+      background: #FFFFFF;
     }
 
     .hero-content {
@@ -168,11 +169,11 @@
       margin-bottom: 8px;
       font-family: 'Poppins', sans-serif;
       letter-spacing: -0.02em;
-      color: #FFFFFF;
+      color: #1A1A1A;
     }
 
     .hero-text h1 .highlight {
-      color: #F5C842;
+      color: #D4A017;
       position: relative;
       display: inline-block;
     }
@@ -184,27 +185,26 @@
       left: 0;
       width: 100%;
       height: 6px;
-      background: rgba(212, 160, 23, 0.3);
+      background: rgba(212, 160, 23, 0.2);
       border-radius: 20px;
     }
 
     .hero-text .tagline {
       font-size: 16px;
       font-weight: 600;
-      color: #F5C842;
+      color: #B8860B;
       margin-bottom: 12px;
       display: inline-block;
-      background: rgba(212, 160, 23, 0.12);
+      background: rgba(212, 160, 23, 0.08);
       padding: 6px 22px;
       border-radius: 40px;
       letter-spacing: 0.4px;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(212, 160, 23, 0.2);
+      border: 1px solid rgba(212, 160, 23, 0.15);
     }
 
     .hero-text p {
       font-size: 17px;
-      color: #B0B0B0;
+      color: #555555;
       margin: 16px 0 32px;
       max-width: 500px;
       font-weight: 400;
@@ -214,7 +214,7 @@
     .btn {
       display: inline-block;
       background: #D4A017;
-      color: #0D0D0D;
+      color: #FFFFFF;
       padding: 14px 38px;
       border-radius: 60px;
       font-weight: 700;
@@ -224,28 +224,28 @@
       cursor: pointer;
       letter-spacing: 0.3px;
       font-family: 'Poppins', sans-serif;
-      box-shadow: 0 4px 18px rgba(212, 160, 23, 0.3);
+      box-shadow: 0 4px 18px rgba(212, 160, 23, 0.25);
     }
 
     .btn:hover {
-      background: #F5C842;
+      background: #B8860B;
       transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(212, 160, 23, 0.4);
-      color: #0D0D0D;
+      box-shadow: 0 12px 35px rgba(212, 160, 23, 0.3);
+      color: #FFFFFF;
     }
 
     .btn-outline {
       background: transparent;
       border: 2px solid #D4A017;
-      color: #F5C842;
+      color: #D4A017;
       margin-left: 14px;
       box-shadow: none;
     }
 
     .btn-outline:hover {
       background: #D4A017;
-      color: #0D0D0D;
-      box-shadow: 0 12px 35px rgba(212, 160, 23, 0.3);
+      color: #FFFFFF;
+      box-shadow: 0 12px 35px rgba(212, 160, 23, 0.25);
       transform: translateY(-3px);
     }
 
@@ -253,17 +253,18 @@
       width: 100%;
       max-width: 440px;
       border-radius: 32px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.10);
       display: block;
       margin: 0 auto;
-      border: 3px solid rgba(212, 160, 23, 0.3);
+      border: 3px solid rgba(212, 160, 23, 0.2);
       object-fit: cover;
       height: 500px;
       transition: 0.3s;
+      background: #F9F9F9;
     }
 
     .hero-image img:hover {
-      border-color: #F5C842;
+      border-color: #D4A017;
       transform: scale(1.01);
     }
 
@@ -279,22 +280,21 @@
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.04);
+      background: #F5F5F5;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
       transition: all 0.25s ease;
-      color: #AAAAAA;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(4px);
+      color: #555555;
+      border: 1px solid #E8E8E8;
     }
 
     .social-icons a:hover {
       background: #D4A017;
-      color: #0D0D0D;
+      color: #FFFFFF;
       transform: translateY(-5px);
-      box-shadow: 0 10px 28px rgba(212, 160, 23, 0.3);
+      box-shadow: 0 10px 28px rgba(212, 160, 23, 0.25);
       border-color: #D4A017;
     }
 
@@ -306,28 +306,28 @@
       margin-bottom: 6px;
       font-family: 'Poppins', sans-serif;
       letter-spacing: -0.01em;
-      color: #FFFFFF;
+      color: #1A1A1A;
     }
 
     .section-title span {
-      color: #F5C842;
+      color: #D4A017;
     }
 
     .section-sub {
       text-align: center;
-      color: #AAAAAA;
+      color: #777777;
       margin-bottom: 48px;
       font-size: 16px;
       font-weight: 400;
       letter-spacing: 0.2px;
     }
 
-    /* ===== ABOUT PREVIEW ===== */
+    /* ===== ABOUT PREVIEW – light card ===== */
     .about-preview {
       padding: 80px 0;
-      background: #121212;
-      border-top: 1px solid rgba(212, 160, 23, 0.15);
-      border-bottom: 1px solid rgba(212, 160, 23, 0.15);
+      background: #F9F9F9;
+      border-top: 1px solid rgba(212, 160, 23, 0.12);
+      border-bottom: 1px solid rgba(212, 160, 23, 0.12);
     }
 
     .about-preview-grid {
@@ -341,27 +341,28 @@
       width: 100%;
       max-width: 400px;
       border-radius: 28px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
-      border: 2px solid rgba(212, 160, 23, 0.2);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+      border: 2px solid rgba(212, 160, 23, 0.15);
       height: 400px;
       object-fit: cover;
       transition: 0.3s;
+      background: #F0F0F0;
     }
 
     .about-preview-image img:hover {
-      border-color: #F5C842;
+      border-color: #D4A017;
     }
 
     .about-preview-text h3 {
       font-size: 28px;
       margin-bottom: 16px;
-      color: #F5C842;
+      color: #B8860B;
       font-weight: 700;
       letter-spacing: -0.01em;
     }
 
     .about-preview-text p {
-      color: #B0B0B0;
+      color: #555555;
       margin-bottom: 14px;
       font-size: 15px;
       line-height: 1.7;
@@ -374,7 +375,7 @@
     /* ===== SKILLS PREVIEW ===== */
     .skills-preview {
       padding: 80px 0;
-      background: #0D0D0D;
+      background: #FFFFFF;
     }
 
     .skills-grid {
@@ -385,19 +386,19 @@
     }
 
     .skill-card {
-      background: #121212;
+      background: #F9F9F9;
       padding: 28px 16px;
       border-radius: 24px;
       transition: all 0.25s ease;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid #EEEEEE;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02);
     }
 
     .skill-card:hover {
-      background: rgba(212, 160, 23, 0.08);
+      background: #FFFCF0;
       transform: translateY(-8px);
       border-color: #D4A017;
-      box-shadow: 0 16px 40px rgba(212, 160, 23, 0.12);
+      box-shadow: 0 16px 40px rgba(212, 160, 23, 0.08);
     }
 
     .skill-card i {
@@ -408,35 +409,35 @@
     }
 
     .skill-card:hover i {
-      color: #F5C842;
+      color: #B8860B;
     }
 
     .skill-card h4 {
       font-size: 16px;
       font-weight: 700;
-      color: #FFFFFF;
+      color: #1A1A1A;
       letter-spacing: -0.01em;
       font-family: 'Poppins', sans-serif;
     }
 
     .skill-card p {
       font-size: 13px;
-      color: #AAAAAA;
+      color: #777777;
       margin-top: 4px;
       font-weight: 400;
     }
 
     .skill-card:hover p {
-      color: #D0D0D0;
+      color: #444444;
     }
 
     /* ===== FOOTER ===== */
     footer {
-      background: #0D0D0D;
-      color: #FFFFFF;
+      background: #FFFFFF;
+      color: #1A1A1A;
       text-align: center;
       padding: 36px 0 30px;
-      border-top: 1px solid rgba(212, 160, 23, 0.2);
+      border-top: 1px solid rgba(212, 160, 23, 0.15);
     }
 
     footer .social-icons {
@@ -445,20 +446,20 @@
     }
 
     footer .social-icons a {
-      background: rgba(255, 255, 255, 0.03);
-      color: #AAAAAA;
-      border-color: rgba(255, 255, 255, 0.05);
+      background: #F5F5F5;
+      color: #555555;
+      border-color: #E8E8E8;
     }
 
     footer .social-icons a:hover {
       background: #D4A017;
       border-color: #D4A017;
-      color: #0D0D0D;
+      color: #FFFFFF;
     }
 
     footer p {
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.35);
+      color: #888888;
       letter-spacing: 0.3px;
     }
 
@@ -468,7 +469,7 @@
     }
 
     footer p strong {
-      color: #F5C842;
+      color: #B8860B;
       font-weight: 600;
     }
 
@@ -513,11 +514,11 @@
         text-align: center;
         padding: 20px 0;
         gap: 14px;
-        background: #121212;
+        background: #FFFFFF;
         border-radius: 20px;
         margin-top: 12px;
         border: 1px solid rgba(212, 160, 23, 0.2);
-        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
       }
 
       .nav-links.active {
@@ -634,7 +635,7 @@
     </div>
   </header>
 
-  <!-- ===== HERO – white & dark yellow theme ===== -->
+  <!-- ===== HERO – white background ===== -->
   <section class="hero" id="home">
     <div class="container hero-content">
       <div class="hero-text">
@@ -669,7 +670,7 @@
           <img src="https://images.pexels.com/photos/1912868/pexels-photo-1912868.jpeg?auto=compress&cs=tinysrgb&w=600" alt="About" />
         </div>
         <div class="about-preview-text">
-          <h3><i class="fas fa-lightbulb" style="color: #F5C842; margin-right: 10px;"></i>Turning Ideas into Digital Reality</h3>
+          <h3><i class="fas fa-lightbulb" style="color: #D4A017; margin-right: 10px;"></i>Turning Ideas into Digital Reality</h3>
           <p>I'm SHUHAIB AP — a passionate Full Stack Developer from Kerala, India. With 2+ years of experience in web development, I specialize in creating high-performance, responsive, and visually stunning websites.</p>
           <p>I don't just code — I bring ideas to life. Whether it's a full-stack web app, a brand identity, or a marketing strategy, I deliver solutions that make an impact.</p>
           <a href="about.html" class="btn">Read More <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
